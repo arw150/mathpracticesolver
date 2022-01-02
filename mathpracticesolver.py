@@ -7,6 +7,10 @@ import tkinter.font as font
 from tkinter import messagebox
 import random
 global loopstage
+global button_correct_xcoord
+global answerlocations
+global button_false1_xcoord
+global button_false2_xcoord 
 loopstage = 0
 x_symbolic = symbols('x')
 sinc = sin(pi * x_symbolic) / (pi * x_symbolic)
@@ -25,17 +29,20 @@ def correctanswer():
         button_correct['text'] = Problem1_Step2_First_Correct_Answer
         button_false1['text'] = Problem1_Step2_First_Wrong_Answer
         button_false2['text'] = Problem1_Step2_Second_Wrong_Answer
+        picklocations()
     if (loopstage == 2):
         Current_step['text'] = Problem1_Step3_question
         button_correct['text'] = Problem1_Step3_First_Correct_Answer
         button_false1['text'] = Problem1_Step3_First_Wrong_Answer
         button_false2['text'] = Problem1_Step3_Second_Wrong_Answer
+        picklocations()
     if (loopstage == 3):
         Current_step['text'] = Problem_Final_Answer
         button_correct['text'] = Problem1_Final_Answer_First_Correct_Answer
         button_false1['text'] = Problem1_Final_Answer_First_Wrong_Answer
         button_false2['text'] = Problem1_Final_Answer_Second_Wrong_Answer
         Choosenext_textbox['text'] = gotitright
+        picklocations()
         
 def getquestionbuttontext():
     global loopstage
@@ -52,32 +59,36 @@ def wronganswer():
     
     
 #LOOPS FOR RANDOMLY CHOOSING LOCATION OF BOXES BETWEEN THREE X VALUES BELOW
-   
-answerlocations = [50,400,750]
-button_correct_xcoord = int(random.choice(answerlocations))
-button_false1_xcoord = button_correct_xcoord
-button_false2_xcoord = button_correct_xcoord
-print(button_correct_xcoord)
-equal = False
-while (equal == False): 
-    button_false1_xcoord = int(random.choice(answerlocations))
-    if (button_false1_xcoord == button_correct_xcoord):
-        equal = False
-    else:
-        equal = True
-print(button_false1_xcoord)
-equal = False
-while (equal == False):
-    button_false2_xcoord = int(random.choice(answerlocations))
-    if ((button_false2_xcoord == button_correct_xcoord) or (button_false2_xcoord == button_false1_xcoord)):
-        equal = False
-    else:
-        equal = True
-        
-print(button_false2_xcoord)
-equal = False
-        
+def picklocations():
+    global answerlocations
+    global button_correct_xcoord
+    global button_false1_xcoord
+    global button_false2_xcoord
+    answerlocations = [50,400,750]
+    button_correct_xcoord = int(random.choice(answerlocations))
+    button_false1_xcoord = button_correct_xcoord
+    button_false2_xcoord = button_correct_xcoord
+    print(button_correct_xcoord)
+    equal = False
+    while (equal == False): 
+        button_false1_xcoord = int(random.choice(answerlocations))
+        if (button_false1_xcoord == button_correct_xcoord):
+            equal = False
+        else:
+            equal = True
+    print(button_false1_xcoord)
+    equal = False
+    while (equal == False):
+        button_false2_xcoord = int(random.choice(answerlocations))
+        if ((button_false2_xcoord == button_correct_xcoord) or (button_false2_xcoord == button_false1_xcoord)):
+            equal = False
+        else:
+            equal = True
 
+    print(button_false2_xcoord)
+    equal = False
+        
+picklocations()
 
 #LITTLE LIBRARY OF SUPERSCRIPT DIGITS
 
@@ -131,16 +142,9 @@ Choosenext_textbox.place(x=200,y=150)
 #WITH THE NEXT STAGE OF THE PROBLEM WHEN A CORRECT ANSWER IS CHOSEN
 #while (loopstage <=3):
    
-   
-    
-    
-    
-    
-    
-    
-    
 
-    
+#picklocations()   #THIS HAS TO MAKE THE LOCATIONS CHANGE, BUT IS CURRENTLY NOT DOING THAT
+
     
     
     
@@ -172,6 +176,7 @@ button_false2.pack()
 button_false2.place(x=button_false2_xcoord, y=300)
 print(button_false2_xcoord)
 window.update()
+
 if (loopstage == 3):
     window.quit()
 
