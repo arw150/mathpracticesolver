@@ -47,13 +47,12 @@ def getquestionbuttontext():
     #return questionbuttontext
 def wronganswer():
     messagebox.showinfo('Incoreect', 'Nope not right try again!')
-    global loopstage
-    loopstage = 0
+    
 
     
     
 #LOOPS FOR RANDOMLY CHOOSING LOCATION OF BOXES BETWEEN THREE X VALUES BELOW
-    
+   
 answerlocations = [50,400,750]
 button_correct_xcoord = int(random.choice(answerlocations))
 button_false1_xcoord = button_correct_xcoord
